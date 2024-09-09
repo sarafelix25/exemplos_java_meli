@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,11 @@ public class VeiculoController {
 	@PostMapping("/veiculos")
 	public ResponseEntity<?> adicionarNovo(@RequestBody VeiculoDTO novo){
 		return new ResponseEntity<VeiculoDTO>(this.service.adicionarNovo(novo), HttpStatus.CREATED);
+	}
+
+	@GetMapping("/veiculos/ano/{ano}")
+	public ResponseEntity<?> filtrarVeiculosPorAno(@PathVariable String ano) {
+		return new ResponseEntity<List<VeiculoDTO>>(this.service.buscarVeiculosPorAno(ano), HttpStatus.OK);
 	}
 
 }

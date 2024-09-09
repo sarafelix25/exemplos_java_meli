@@ -2,6 +2,7 @@ package br.com.isiflix.veiculos.repo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,12 @@ public class VeiculoRepo {
 	}
 	public List<VeiculoEntity> findAll(){
 		return this.database;
+	}
+
+	public List<VeiculoEntity> filtrarPorAno(int anoFabricacao) {
+		return this.database.stream()
+							.filter(v -> v.getAnoFabricacao() == anoFabricacao)
+							.collect(Collectors.toList());
 	}
 
 }

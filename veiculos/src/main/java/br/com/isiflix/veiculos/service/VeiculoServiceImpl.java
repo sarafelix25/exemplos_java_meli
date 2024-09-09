@@ -1,6 +1,7 @@
 package br.com.isiflix.veiculos.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,13 @@ public class VeiculoServiceImpl implements IVeiculoService{
 		
 		// versao 2.0 - agora ao invés de listas, STREAMS
 		return ((List<VeiculoEntity>) repo.findAll()).stream().map(e -> entityToDto(e)).toList();
+	}
+
+	@Override
+	public List<VeiculoDTO> buscarVeiculosPorAno(String anoFabricacao) {
+		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorAno(Integer.parseInt(anoFabricacao));
+		return veiculosFiltrados.stream()
+				.map(this::entityToDto).toList();
 	}
 	
 	private VeiculoEntity dtoToEntity(VeiculoDTO dto) {
