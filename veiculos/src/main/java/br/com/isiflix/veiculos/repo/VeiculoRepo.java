@@ -32,4 +32,10 @@ public class VeiculoRepo {
 							.collect(Collectors.toList());
 	}
 
+	public List<VeiculoEntity> filtrarPorMarca(String marca) {
+		return this.database.stream()
+							.filter(v -> v.getMarca() == marca)
+							.collect(Collectors.toList());
+	}
+
 }

@@ -13,4 +13,6 @@ public interface VeiculoH2Repo extends CrudRepository<VeiculoEntity, Integer>{
     @Query("SELECT v FROM VeiculoEntity v WHERE v.anoFabricacao = :ano")
     List<VeiculoEntity> filtrarPorAno(@Param("ano") int anoFabricacao);
 
+    @Query("SELECT v FROM VeiculoEntity v WHERE v.marca = :marca")
+    List<VeiculoEntity> filtrarPorMarca(@Param("marca") String marca);
 }

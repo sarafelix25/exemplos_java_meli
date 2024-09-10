@@ -52,7 +52,16 @@ public class VeiculoServiceImpl implements IVeiculoService{
 		return veiculosFiltrados.stream()
 				.map(this::entityToDto).toList();
 	}
+
 	
+	
+	@Override
+	public List<VeiculoDTO> buscarVeiculosPorMarca(String marca) {
+		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorMarca(marca);
+		return veiculosFiltrados.stream()
+								.map(this::entityToDto).toList();
+	}
+
 	private VeiculoEntity dtoToEntity(VeiculoDTO dto) {
 		return new VeiculoEntity(Integer.parseInt(dto.id()),
 				                 dto.marca(),
