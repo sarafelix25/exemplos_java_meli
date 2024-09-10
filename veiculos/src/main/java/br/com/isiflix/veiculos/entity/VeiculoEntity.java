@@ -17,6 +17,8 @@ public class VeiculoEntity {
 	private String marca;
 	@Column(name = "modelo")
 	private String modelo;
+	@Column(name = "cor")
+	private String cor;
 	@Column(name = "ano_fab")
 	private Integer anoFabricacao;
 	@Column(name = "preco")
@@ -26,12 +28,13 @@ public class VeiculoEntity {
 	@Column(name = "cilindradas")
 	private Double cilindradas;
 
-	public VeiculoEntity(Integer id, String marca, String modelo, Integer anoFabricacao, Double preco,
+	public VeiculoEntity(Integer id, String marca, String modelo, String cor, Integer anoFabricacao, Double preco,
 			Integer capacidadePassageiros, Double cilindradas) {
 		super();
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.cor = cor;
 		this.anoFabricacao = anoFabricacao;
 		this.preco = preco;
 		this.capacidadePassageiros = capacidadePassageiros;
@@ -64,6 +67,14 @@ public class VeiculoEntity {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 	public Integer getAnoFabricacao() {

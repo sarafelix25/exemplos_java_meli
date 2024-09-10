@@ -10,6 +10,6 @@ import br.com.isiflix.veiculos.entity.VeiculoEntity;
 
 public interface VeiculoH2Repo extends CrudRepository<VeiculoEntity, Integer>{
 
-    @Query("SELECT v FROM VeiculoEntity v WHERE v.anoFabricacao = :ano AND v.marca = :marca")
-    List<VeiculoEntity> filtrarPorAnoEMarca(@Param("ano") int anoFabricacao, @Param("marca") String marca);
+    @Query("SELECT v FROM VeiculoEntity v WHERE v.anoFabricacao = :ano AND v.cor = :cor")
+    List<VeiculoEntity> filtrarPorAnoECor(@Param("ano") int anoFabricacao, @Param("cor") String cor);
 }

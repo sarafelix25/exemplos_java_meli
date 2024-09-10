@@ -48,8 +48,8 @@ public class VeiculoServiceImpl implements IVeiculoService{
 	}
 
 	@Override
-	public List<VeiculoDTO> buscarVeiculosPorAnoEMarca(String anoFabricacao, String marca) {
-		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorAnoEMarca(Integer.parseInt(anoFabricacao), marca);
+	public List<VeiculoDTO> buscarVeiculosPorAnoECor(String anoFabricacao, String cor) {
+		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorAnoECor(Integer.parseInt(anoFabricacao), cor);
 		if (veiculosFiltrados.isEmpty()) {
 			throw new NaoEncontradoException("Veículo não encontrado");
 		}
@@ -61,6 +61,7 @@ public class VeiculoServiceImpl implements IVeiculoService{
 		return new VeiculoEntity(Integer.parseInt(dto.id()),
 				                 dto.marca(),
 				                 dto.modelo(),
+								 dto.cor(),
 				                 Integer.parseInt(dto.ano()),
 				                 Double.parseDouble(dto.preco()),
 				                 Integer.parseInt(dto.capacidade()),
@@ -70,6 +71,7 @@ public class VeiculoServiceImpl implements IVeiculoService{
 		return new VeiculoDTO(String.valueOf(entity.getId()), 
 				              entity.getMarca(), 
 				              entity.getModelo(), 
+							  entity.getCor(),
 				              String.valueOf(entity.getAnoFabricacao()),
 				              String.valueOf(entity.getPreco()), 
 				              String.valueOf(entity.getCapacidadePassageiros()), 

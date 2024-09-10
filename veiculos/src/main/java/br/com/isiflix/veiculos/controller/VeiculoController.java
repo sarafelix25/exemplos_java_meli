@@ -33,9 +33,9 @@ public class VeiculoController {
 		return new ResponseEntity<VeiculoDTO>(this.service.adicionarNovo(novo), HttpStatus.CREATED);
 	}
 
-	@GetMapping("veiculos/ano/{ano}/marca/{marca}")
-	public ResponseEntity<?> obterVeiculosPorAno(@PathVariable String ano, @PathVariable String marca) {
-		List<VeiculoDTO> veiculos = this.service.buscarVeiculosPorAnoEMarca(ano, marca);
+	@GetMapping("veiculos/cor/{cor}/ano/{ano}")
+	public ResponseEntity<?> obterVeiculosPorAnoECor(@PathVariable String ano, @PathVariable String cor) {
+		List<VeiculoDTO> veiculos = this.service.buscarVeiculosPorAnoECor(ano, cor);
     	return new ResponseEntity<>(veiculos, HttpStatus.OK);
 	}
 }

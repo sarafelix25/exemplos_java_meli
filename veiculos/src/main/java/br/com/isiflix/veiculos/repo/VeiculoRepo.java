@@ -26,9 +26,9 @@ public class VeiculoRepo {
 		return this.database;
 	}
 
-	public List<VeiculoEntity> filtrarPorAnoEMarca(int anoFabricacao, String marca) {
+	public List<VeiculoEntity> filtrarPorAnoECor(int anoFabricacao, String cor) {
 		return this.database.stream()
-							.filter(v -> v.getAnoFabricacao() == anoFabricacao && v.getMarca().equalsIgnoreCase(marca))
+							.filter(v -> v.getAnoFabricacao() == anoFabricacao && v.getMarca().equalsIgnoreCase(cor))
 							.collect(Collectors.toList());
 	}
 }

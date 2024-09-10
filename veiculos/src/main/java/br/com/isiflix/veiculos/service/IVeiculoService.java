@@ -7,5 +7,5 @@ import br.com.isiflix.veiculos.dto.VeiculoDTO;
 public interface IVeiculoService {
 	public VeiculoDTO adicionarNovo(VeiculoDTO novo);
 	public List<VeiculoDTO> recuperarTodos();
-	public List<VeiculoDTO> buscarVeiculosPorAnoEMarca(String ano, String marca);
+	public List<VeiculoDTO> buscarVeiculosPorAnoECor(String ano, String cor);
 }
