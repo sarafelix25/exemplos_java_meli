@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.isiflix.veiculos.dto.VeiculoDTO;
 import br.com.isiflix.veiculos.entity.VeiculoEntity;
+import br.com.isiflix.veiculos.exceptions.NaoEncontradoException;
 import br.com.isiflix.veiculos.exceptions.ValidacaoException;
 import br.com.isiflix.veiculos.repo.VeiculoH2Repo;
 
@@ -47,19 +48,13 @@ public class VeiculoServiceImpl implements IVeiculoService{
 	}
 
 	@Override
-	public List<VeiculoDTO> buscarVeiculosPorAno(String anoFabricacao) {
-		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorAno(Integer.parseInt(anoFabricacao));
+	public List<VeiculoDTO> buscarVeiculosPorAnoEMarca(String anoFabricacao, String marca) {
+		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorAnoEMarca(Integer.parseInt(anoFabricacao), marca);
+		if (veiculosFiltrados.isEmpty()) {
+			throw new NaoEncontradoException("Veículo não encontrado");
+		}
 		return veiculosFiltrados.stream()
 				.map(this::entityToDto).toList();
-	}
-
-	
-	
-	@Override
-	public List<VeiculoDTO> buscarVeiculosPorMarca(String marca) {
-		List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorMarca(marca);
-		return veiculosFiltrados.stream()
-								.map(this::entityToDto).toList();
 	}
 
 	private VeiculoEntity dtoToEntity(VeiculoDTO dto) {
