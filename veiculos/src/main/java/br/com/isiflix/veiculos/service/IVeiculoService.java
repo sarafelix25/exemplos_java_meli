@@ -8,5 +8,5 @@ public interface IVeiculoService {
 	public VeiculoDTO adicionarNovo(VeiculoDTO novo);
 	public List<VeiculoDTO> recuperarTodos();
 	public List<VeiculoDTO> buscarVeiculosPorAnoECor(String ano, String cor);
-	// public List<VeiculoDTO> buscarVeiculoPorMarcaEAno(String marca, int inicio_ano, int fim_ano);
+	public List<VeiculoDTO> buscarVeiculoPorMarcaEAno(String marca, int inicio_ano, int fim_ano);
 }

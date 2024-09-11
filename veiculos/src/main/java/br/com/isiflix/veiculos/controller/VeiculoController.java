@@ -39,8 +39,8 @@ public class VeiculoController {
     	return new ResponseEntity<>(veiculos, HttpStatus.OK);
 	}
 
-	// @GetMapping("/veiculos/marca/{marca}/between/{inicio_ano}/{fim_ano}")
-	// public ResponseEntity<?> obterVeiculosPorMarcaEIntervaloAnos(@PathVariable String marca, @PathVariable int inicio_ano, @PathVariable int fim_ano) {
-	// 	return new ResponseEntity<>(this.service.buscarVeiculoPorMarcaEAno(marca, inicio_ano, fim_ano), HttpStatus.OK);
-	// }
+	@GetMapping("/veiculos/marca/{marca}/between/{inicio_ano}/{fim_ano}")
+	public ResponseEntity<?> obterVeiculosPorMarcaEIntervaloAnos(@PathVariable String marca, @PathVariable int inicio_ano, @PathVariable int fim_ano) {
+		return new ResponseEntity<>(this.service.buscarVeiculoPorMarcaEAno(marca, inicio_ano, fim_ano), HttpStatus.OK);
+	}
 }
