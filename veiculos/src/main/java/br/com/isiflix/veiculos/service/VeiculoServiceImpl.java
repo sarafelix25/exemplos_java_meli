@@ -57,6 +57,17 @@ public class VeiculoServiceImpl implements IVeiculoService{
 				.map(this::entityToDto).toList();
 	}
 
+	// @Override
+	// public List<VeiculoDTO> buscarVeiculoPorMarcaEAno(String marca, int inicio_ano, int fim_ano) {
+	// 	List<VeiculoEntity> veiculosFiltrados = repo.filtrarPorMarcaEAno(marca, inicio_ano, fim_ano);
+	// 	if (veiculosFiltrados.isEmpty()) {
+	// 		throw new NaoEncontradoException("Veículo não encontrado");
+	// 	}
+	// 	return veiculosFiltrados.stream()
+	// 							.map(this::entityToDto)
+	// 							.toList();
+	// }
+
 	private VeiculoEntity dtoToEntity(VeiculoDTO dto) {
 		return new VeiculoEntity(Integer.parseInt(dto.id()),
 				                 dto.marca(),
