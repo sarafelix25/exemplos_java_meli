@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.isiflix.veiculos.dto.VeiculoDTO;
 import br.com.isiflix.veiculos.service.IVeiculoService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class VeiculoController {
@@ -43,4 +45,10 @@ public class VeiculoController {
 	public ResponseEntity<?> obterVeiculosPorMarcaEIntervaloAnos(@PathVariable String marca, @PathVariable int inicio_ano, @PathVariable int fim_ano) {
 		return new ResponseEntity<>(this.service.buscarVeiculoPorMarcaEAno(marca, inicio_ano, fim_ano), HttpStatus.OK);
 	}
+
+	@GetMapping("/veiculos/velocidade_media/marca/{marca}")
+	public ResponseEntity<?> obterVelocidadeMediaPorMarca(@PathVariable String marca) {
+		return new ResponseEntity<>(this.service.buscarVeiculoVelocidadeMediaPorMarca(marca), HttpStatus.OK);
+	}
+	
 }

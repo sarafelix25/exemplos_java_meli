@@ -12,4 +12,7 @@ public interface VeiculoH2Repo extends CrudRepository<VeiculoEntity, Integer>{
 
     List<VeiculoEntity> findByAnoFabricacaoAndCor(int anoFabricacao, String cor);
     List<VeiculoEntity> findByMarcaAndAnoFabricacaoBetween(String marca, Integer inicio_ano, Integer fim_ano);
+    
+    @Query ("SELECT AVG(v.velocidade) FROM VeiculoEntity v WHERE v.marca = :marca")
+    Double calcularVelocidadeMediaPorMarca(@Param("marca") String marca);
 }

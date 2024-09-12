@@ -35,15 +35,6 @@ public class VeiculoServiceImpl implements IVeiculoService{
 
 	@Override
 	public List<VeiculoDTO> recuperarTodos() {
-		// TODO Auto-generated method stub
-		// versao 1.0 trabalhando direto com listas
-//		List<VeiculoDTO> resultado = new ArrayList<VeiculoDTO>();
-//		for (VeiculoEntity e: repo.findAll()) {
-//			resultado.add(entityToDto(e));
-//		}
-//		return resultado;
-		
-		// versao 2.0 - agora ao invés de listas, STREAMS
 		return ((List<VeiculoEntity>) repo.findAll()).stream().map(e -> entityToDto(e)).toList();
 	}
 
@@ -68,6 +59,16 @@ public class VeiculoServiceImpl implements IVeiculoService{
 								.toList();
 	}
 
+	
+	@Override
+	public Double buscarVeiculoVelocidadeMediaPorMarca(String marca) {
+		Double velocidadeMediaVeiculos = repo.calcularVelocidadeMediaPorMarca(marca);
+		if (velocidadeMediaVeiculos == 0.0) {
+			throw new NaoEncontradoException("Veículo não encontrado");
+		}
+		return velocidadeMediaVeiculos;
+	}
+
 	private VeiculoEntity dtoToEntity(VeiculoDTO dto) {
 		return new VeiculoEntity(Integer.parseInt(dto.id()),
 				                 dto.marca(),
@@ -76,7 +77,8 @@ public class VeiculoServiceImpl implements IVeiculoService{
 				                 Integer.parseInt(dto.ano()),
 				                 Double.parseDouble(dto.preco()),
 				                 Integer.parseInt(dto.capacidade()),
-				                 Double.parseDouble(dto.cilindradas()));
+				                 Double.parseDouble(dto.cilindradas()),
+								 Double.parseDouble(dto.velocidade()));
 	}
 	private VeiculoDTO entityToDto(VeiculoEntity entity) {
 		return new VeiculoDTO(String.valueOf(entity.getId()), 
@@ -86,7 +88,8 @@ public class VeiculoServiceImpl implements IVeiculoService{
 				              String.valueOf(entity.getAnoFabricacao()),
 				              String.valueOf(entity.getPreco()), 
 				              String.valueOf(entity.getCapacidadePassageiros()), 
-							  String.valueOf(entity.getCilindradas()));
+							  String.valueOf(entity.getCilindradas()),
+							  String.valueOf(entity.getVelocidade()));
 	}
 
 }

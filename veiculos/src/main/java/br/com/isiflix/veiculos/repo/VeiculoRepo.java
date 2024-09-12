@@ -38,4 +38,13 @@ public class VeiculoRepo {
 											      v.getAnoFabricacao() < fim_ano)
 												  .collect(Collectors.toList());
 	}
+
+	public Double calcularVelocidadePorMarca(String marca) {
+		return this.database.stream()
+							.filter(v -> v.getMarca().equalsIgnoreCase(marca))
+							.mapToDouble(VeiculoEntity::getVelocidade)
+            				.average()
+            				.orElse(0.0);
+
+	}
 }

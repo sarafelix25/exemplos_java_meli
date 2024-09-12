@@ -9,4 +9,5 @@ public interface IVeiculoService {
 	public List<VeiculoDTO> recuperarTodos();
 	public List<VeiculoDTO> buscarVeiculosPorAnoECor(String ano, String cor);
 	public List<VeiculoDTO> buscarVeiculoPorMarcaEAno(String marca, int inicio_ano, int fim_ano);
+	public Double buscarVeiculoVelocidadeMediaPorMarca(String marca);
 }

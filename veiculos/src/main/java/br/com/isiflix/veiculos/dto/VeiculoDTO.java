@@ -8,7 +8,8 @@ public record VeiculoDTO(
 	String ano, 
 	String preco, 
 	String capacidade, 
-	String cilindradas
+	String cilindradas,
+	String velocidade
 	) {
 
 }

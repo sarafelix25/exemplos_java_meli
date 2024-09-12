@@ -27,9 +27,11 @@ public class VeiculoEntity {
 	private Integer capacidadePassageiros;
 	@Column(name = "cilindradas")
 	private Double cilindradas;
+	@Column(name = "velocidade")
+	private Double velocidade;
 
 	public VeiculoEntity(Integer id, String marca, String modelo, String cor, Integer anoFabricacao, Double preco,
-			Integer capacidadePassageiros, Double cilindradas) {
+			Integer capacidadePassageiros, Double cilindradas, Double velocidade) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -39,10 +41,19 @@ public class VeiculoEntity {
 		this.preco = preco;
 		this.capacidadePassageiros = capacidadePassageiros;
 		this.cilindradas = cilindradas;
+		this.velocidade = velocidade;
 	}
 
 	public VeiculoEntity() {
 		super();
+	}
+
+	public Double getVelocidade() {
+		return velocidade;
+	}
+
+	public void setVelocidade(Double velocidade) {
+		this.velocidade = velocidade;
 	}
 
 	public Integer getId() {
