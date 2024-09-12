@@ -47,4 +47,11 @@ public class VeiculoRepo {
             				.orElse(0.0);
 
 	}
+
+	public VeiculoEntity findById(int id) {
+		return this.database.stream()
+							.filter(v -> v.getId().equals(id))
+							.findFirst()
+							.orElse(null);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.isiflix.veiculos.exceptions.NaoEncontradoException;
 import br.com.isiflix.veiculos.exceptions.ValidacaoException;
+import br.com.isiflix.veiculos.exceptions.ConflitoException;
 
 @ControllerAdvice
 public class VeiculoControllerAdvice {
@@ -19,5 +20,10 @@ public class VeiculoControllerAdvice {
 	@ExceptionHandler(value = NaoEncontradoException.class)
 	public ResponseEntity<?> veiculoNaoEncontradoException() {
 		return new ResponseEntity<String>("Veículo não encontrado.", HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(value = ConflitoException.class)
+	public ResponseEntity<?> veiculoConflitoException() {
+		return new ResponseEntity<String>("O id já está em uso.", HttpStatus.CONFLICT);
 	}
 }

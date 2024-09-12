@@ -15,4 +15,6 @@ public interface VeiculoH2Repo extends CrudRepository<VeiculoEntity, Integer>{
     
     @Query ("SELECT AVG(v.velocidade) FROM VeiculoEntity v WHERE v.marca = :marca")
     Double calcularVelocidadeMediaPorMarca(@Param("marca") String marca);
+
+    VeiculoEntity findById(int id);
 }

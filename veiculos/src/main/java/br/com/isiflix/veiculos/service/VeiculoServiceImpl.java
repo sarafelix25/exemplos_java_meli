@@ -1,7 +1,6 @@
 package br.com.isiflix.veiculos.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import br.com.isiflix.veiculos.entity.VeiculoEntity;
 import br.com.isiflix.veiculos.exceptions.NaoEncontradoException;
 import br.com.isiflix.veiculos.exceptions.ValidacaoException;
 import br.com.isiflix.veiculos.repo.VeiculoH2Repo;
+import br.com.isiflix.veiculos.exceptions.ConflitoException;
 
 @Service
 public class VeiculoServiceImpl implements IVeiculoService{
@@ -22,13 +22,15 @@ public class VeiculoServiceImpl implements IVeiculoService{
 	private VeiculoH2Repo repo;
 	
 	@Override
-	public VeiculoDTO adicionarNovo(VeiculoDTO novo) {
-		// primeiro de tudo!!! Validacao!
-		
+	public VeiculoDTO adicionarNovo(VeiculoDTO novo) {		
 		if (novo.id() == null || novo.marca() == null) {
 			throw new ValidacaoException("Valores Invalidos");
 		}
-		
+		VeiculoEntity veiculoExistente = repo.findById(Integer.parseInt(novo.id()));
+		if (veiculoExistente != null) {
+			throw new ConflitoException("O id já está em uso: " + novo.id());
+		}
+
 		repo.save(dtoToEntity(novo));
 		return novo;
 	}
@@ -58,7 +60,6 @@ public class VeiculoServiceImpl implements IVeiculoService{
 								.map(this::entityToDto)
 								.toList();
 	}
-
 	
 	@Override
 	public Double buscarVeiculoVelocidadeMediaPorMarca(String marca) {
